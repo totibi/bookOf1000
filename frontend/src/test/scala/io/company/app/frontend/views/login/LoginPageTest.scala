@@ -1,10 +1,10 @@
 package io.company.app.frontend.views.login
 
-import io.company.app.frontend.routing.{ChatState, LoginPageState, RoutingState}
+import io.company.app.frontend.routing.{CMSContainerState, LoginPageState, RoutingState}
 import io.company.app.frontend.services.UserContextService
 import io.company.app.shared.i18n.Translations
-import io.company.app.shared.model.auth.{UserContext, UserToken}
 import io.company.app.shared.model.SharedExceptions
+import io.company.app.shared.model.auth.{UserContext, UserToken}
 import io.udash.Application
 import io.udash.i18n.TranslationKey
 import io.udash.properties.model.ModelProperty
@@ -17,12 +17,12 @@ class LoginPageTest extends AsyncWordSpec with Matchers with AsyncMockFactory {
   private class MockableApplication extends Application[RoutingState](null, null, null)
 
   "LoginPage" should {
-    "redirect to the chat view if user is already authenticated" in {
+    "redirect to the cms view if user is already authenticated" in {
       val userService = mock[UserContextService]
       (userService.currentContext _).expects().returning(Some(UserContext(UserToken("t1"), "name", Set.empty)))
 
       val application = mock[MockableApplication]
-      (application.goTo _).expects(ChatState, false).once()
+      (application.goTo _).expects(CMSContainerState, false).once()
 
       val model = ModelProperty(LoginPageModel("", "", false, Seq.empty))
       val presenter = new LoginPagePresenter(model, userService, application)
@@ -35,7 +35,7 @@ class LoginPageTest extends AsyncWordSpec with Matchers with AsyncMockFactory {
       (userService.login _).expects("u1", "p1").returning(Future.successful(UserContext(UserToken("t1"), "name", Set.empty)))
 
       val application = mock[MockableApplication]
-      (application.goTo _).expects(ChatState, false).once()
+      (application.goTo _).expects(CMSContainerState, false).once()
 
       val model = ModelProperty(LoginPageModel("u1", "p1", false, Seq(TranslationKey.untranslatable("Bla"))))
       val presenter = new LoginPagePresenter(model, userService, application)

@@ -28,20 +28,14 @@ class RpcClientsService(sendToClientFactory: ClientRPCTarget => MainClientRPC) {
   /** Adds new connection ID to the authenticated set. */
   def registerAuthenticatedConnection(clientId: ClientId, userContext: UserContext): Unit = {
     authClients(clientId) = userContext
-    broadcastAuthConnectionsCount()
   }
 
   /** Removes connection ID from the list. */
   def unregisterConnection(clientId: ClientId): Unit ={
     clients -= clientId
     authClients.remove(clientId)
-    broadcastAuthConnectionsCount()
   }
 
-  private def broadcastAuthConnectionsCount(): Unit =
-    authClients.foreach { case (id, _) =>
-      sendToClient(id).chat().connectionsCountUpdate(authClients.size)
-    }
 }
 
 object RpcClientsService {

@@ -1,6 +1,6 @@
 package io.company.app.backend.css
 
-import io.company.app.shared.css.{ChatStyles, GlobalStyles, LoginPageStyles}
+import io.company.app.shared.css.{ GlobalStyles, LoginPageStyles}
 import io.udash.css._
 
 import scalacss.internal.{Renderer, StringRenderer}
@@ -16,8 +16,7 @@ class CssRenderer(path: String, renderPretty: Boolean) {
       Seq(
         // the list of styles to be rendered
         GlobalStyles,
-        LoginPageStyles,
-        ChatStyles
+        LoginPageStyles
       ), createMain = true
     ).render()(renderer)
   }

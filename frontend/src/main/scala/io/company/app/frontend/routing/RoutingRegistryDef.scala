@@ -13,7 +13,6 @@ class RoutingRegistryDef extends RoutingRegistry[RoutingState] {
     Url(state2Url.apply(state))
 
   private val (url2State, state2Url) = bidirectional {
-    case "/" => LoginPageState
-    case "/chat" => ChatState
+    case "/" => CMSContainerState
   }
 }

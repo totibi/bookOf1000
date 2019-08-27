@@ -24,7 +24,7 @@ inThisBuild(Seq(
     "-language:existentials",
     "-language:dynamics",
     "-Xfuture",
-    "-Xfatal-warnings",
+    "-Ywarn-unused:_",
     "-Xlint:_,-missing-interpolator,-adapted-args",
     "-Ybackend-parallelism", "4",
     "-Ycache-plugin-class-loader:last-modified",
