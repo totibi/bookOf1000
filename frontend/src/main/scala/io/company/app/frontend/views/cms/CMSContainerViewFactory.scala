@@ -51,7 +51,7 @@ class CMSContainerView(
 	override def getTemplate = {
 		val selected = Property(pages.elemProperties.head.get)
 		val rightPart = div(
-			BootstrapStyles.Grid.colLg1,
+			BootstrapStyles.Grid.colLg4,
 			childViewContainer
 		).render
 		val pagesTitlesNav = div(
@@ -69,7 +69,7 @@ class CMSContainerView(
 			).render
 		).render
 		val leftPart = div(
-			BootstrapStyles.Grid.colMd1,
+			BootstrapStyles.Grid.colMd2,
 			pagesTitlesNav
 		).render
 		div(
