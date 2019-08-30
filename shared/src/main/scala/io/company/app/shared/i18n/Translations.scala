@@ -9,7 +9,7 @@ object Translations {
   val langs = Seq("en", "pl")
 
   /** The list of translation bundles available in the `backend` resources. */
-  val bundlesNames = Seq("auth", "chat", "global")
+  val bundlesNames = Seq("auth", "global")
 
   object Global {
     val unknownError = key("global.unknownError")
@@ -24,13 +24,5 @@ object Translations {
 
     val userNotFound = key("auth.user_not_found")
     val info = key("auth.info")
-
-    val randomPermissionsInfo = key("auth.random_permissions")
-  }
-
-  object Chat {
-    // notice that this translation takes a single Int argument
-    val connections = key1[Int]("chat.connections")
-    val inputPlaceholder = key("chat.input.placeholder")
   }
 }
