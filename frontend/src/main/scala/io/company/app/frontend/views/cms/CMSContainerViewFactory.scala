@@ -37,7 +37,7 @@ class CMSContainerPresenter(
 	}
 	
 	def viewPage(page: CMSPage): Unit = {
-		application.goTo(CMSPageContentState(page.id))
+		application.goTo(CMSPageContentState(page.title))
 	}
 }
 

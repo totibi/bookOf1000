@@ -14,7 +14,7 @@ class StatesToViewFactoryDef extends ViewFactoryRegistry[RoutingState] {
 				ApplicationContext.userService, ApplicationContext.application, ApplicationContext.translationsService
 			)
 			case CMSContainerState => new CMSContainerViewFactory(ApplicationContext.application, ApplicationContext.userService)
-			case CMSPageContentState(pageID) =>
-				new CMSPageContentViewFactory(ApplicationContext.application, ApplicationContext.userService, pageID)
+			case CMSPageContentState(pageTitle) =>
+				new CMSPageContentViewFactory(ApplicationContext.application, ApplicationContext.userService, pageTitle)
 		}
 }

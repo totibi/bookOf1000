@@ -16,11 +16,11 @@ class RoutingRegistryDef extends RoutingRegistry[RoutingState] {
   private val state2Url: PartialFunction[RoutingState, String] = {
     case CMSContainerState => "/"
     case LoginPageState => "/login"
-    case CMSPageContentState(pageID) => s"/content/${pageID}"
+    case CMSPageContentState(pageTitle) => s"/content/${pageTitle}"
   }
   
 	private val url2State: PartialFunction[String, RoutingState] = {
 		case "/" => CMSContainerState
-		case "/content" / pageID if CMSPage.defaultList.exists(_.id.toString.eq(pageID)) => CMSPageContentState(pageID.toInt)
+		case "/content" / pageTitle if CMSPage.defaultList.exists(_.title.toString.eq(pageTitle)) => CMSPageContentState(pageTitle)
 	}
 }

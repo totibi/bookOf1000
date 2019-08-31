@@ -15,14 +15,14 @@ import scala.concurrent.ExecutionContext
 class CMSPageContentViewFactory(
 	application: Application[RoutingState],
 	userService: UserContextService,
-	pageID     : Int
+	pageTitle  : String
 ) extends ViewFactory[CMSPageContentState] {
 	
 	import scala.concurrent.ExecutionContext.Implicits.global
 	
 	override def create(): (View, Presenter[CMSPageContentState]) = {
-		val pageByID = CMSPage.defaultList.find(_.id == pageID).get
-		val model = ModelProperty[CMSPage](pageByID)
+		val selectedPage = CMSPage.defaultList.find(_.title == pageTitle).get
+		val model = ModelProperty[CMSPage](selectedPage)
 		val presenter = new CMSPageContentPresenter(model, application)
 		val view = new CMSPageContentView(presenter)
 		(view, presenter)
