@@ -50,9 +50,15 @@ object Dependencies {
     "io.udash" %%% "udash-jquery" % udashJQueryVersion,
   ))
 
+  val tinyMCEVersion = "5.0.12"
   // JavaScript libraries dependencies
   // Those will be added into frontend-deps.js
   val frontendJSDeps = Def.setting(Seq(
+    
+    // tinyMCE WYSIWYG html editor
+    "org.webjars.npm" % "tinymce" % tinyMCEVersion /
+    "tinymce.js" minified "tinymce.min.js",
+    
     // "jquery.js" is provided by "udash-jquery" dependency
     "org.webjars" % "bootstrap" % bootstrapVersion /
       "bootstrap.js" minified "bootstrap.min.js" dependsOn "jquery.js",
