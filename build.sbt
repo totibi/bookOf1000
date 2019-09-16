@@ -138,18 +138,17 @@ lazy val `shared-js` = jsProjectFor(shared, project)
 val frontendWebContent = "UdashStatics/WebContent"
 lazy val frontend = project.in(file("frontend"))
   .enablePlugins(ScalaJSPlugin) // enables Scala.js plugin in this module
-  .enablePlugins(SbtWeb)
+  .enablePlugins(ScalaJSBundlerPlugin)
   .dependsOn(`shared-js` % TestAndCompileDep)
   .settings(
     commonJsSettings,
     libraryDependencies ++= Dependencies.frontendDeps.value,
-    jsDependencies ++= Dependencies.frontendJSDeps.value, // native JS dependencies
-
+//    jsDependencies ++= Dependencies.frontendJSDeps.value, // native JS dependencies
+    npmDependencies in Compile ++= Dependencies.npmDeps.value,
     // Make this module executable in JS
     Compile / mainClass := Some("io.company.app.frontend.JSLauncher"),
     Compile / scalaJSUseMainModuleInitializer := true,
     Test / scalaJSUseMainModuleInitializer := false,
-    LessKeys.compress in Assets  := true,
 
     // Implementation of custom tasks defined above
     copyAssets := {

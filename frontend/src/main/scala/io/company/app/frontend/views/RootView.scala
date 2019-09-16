@@ -17,8 +17,8 @@ class RootView() extends ContainerView with CssView {
   // It puts child view into `childViewContaainer`
   override def getTemplate: Modifier = div(
     // loads Bootstrap and FontAwesome styles from CDN
-    UdashBootstrap.loadBootstrapStyles(),
-    UdashBootstrap.loadFontAwesome(),
+//    UdashBootstrap.loadBootstrapStyles(),
+//    UdashBootstrap.loadFontAwesome(),
 
     BootstrapStyles.container,
     div(
